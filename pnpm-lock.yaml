@@ -59,6 +59,27 @@ importers:
 
   packages/biome-config: {}
 
+  packages/plugin-sdk:
+    devDependencies:
+      '@biomejs/biome':
+        specifier: 'catalog:'
+        version: 2.5.4
+      '@rigi/biome-config':
+        specifier: workspace:*
+        version: link:../biome-config
+      '@rigi/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@rigi/vitest-config':
+        specifier: workspace:*
+        version: link:../vitest-config
+      typescript:
+        specifier: 'catalog:'
+        version: 7.0.2
+      vitest:
+        specifier: 'catalog:'
+        version: 4.1.10(@types/node@26.1.1)(vite@8.1.5(@types/node@26.1.1)(jiti@2.6.1)(yaml@2.9.0))
+
   packages/tsconfig: {}
 
   packages/vitest-config:
