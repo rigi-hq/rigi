@@ -19,6 +19,8 @@
     "@nestjs/core": "catalog:",
     "@nestjs/common": "catalog:",
     "@nestjs/platform-express": "catalog:",
+    "@prisma/adapter-pg": "catalog:",
+    "@prisma/client": "catalog:",
     "@rigi/plugin-sdk": "workspace:*",
     "reflect-metadata": "catalog:",
     "rxjs": "catalog:"
@@ -32,6 +34,7 @@
     "@swc/cli": "catalog:",
     "typescript": "catalog:",
     "@biomejs/biome": "catalog:",
+    "prisma": "catalog:",
     "vitest": "catalog:",
     "unplugin-swc": "catalog:",
     "supertest": "catalog:",

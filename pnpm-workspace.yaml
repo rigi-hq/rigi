@@ -21,6 +21,7 @@ catalog:
   # --- Prisma ---
   prisma: 7.8.0
   "@prisma/client": 7.8.0
+  "@prisma/adapter-pg": 7.8.0
   # --- AdminJS ---
   adminjs: 7.8.17
   "@adminjs/nestjs": 7.0.0
@@ -47,4 +48,6 @@ catalog:
 
 # @swc/core ships a native binary and needs its install build script.
 allowBuilds:
+  '@prisma/engines': true
   "@swc/core": true
+  prisma: true
