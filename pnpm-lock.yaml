@@ -4,30 +4,57 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@biomejs/biome':
+      specifier: 2.5.4
+      version: 2.5.4
+    '@commitlint/cli':
+      specifier: 21.2.1
+      version: 21.2.1
+    '@commitlint/config-conventional':
+      specifier: 21.2.0
+      version: 21.2.0
+    husky:
+      specifier: 9.1.7
+      version: 9.1.7
+    lint-staged:
+      specifier: 17.1.0
+      version: 17.1.0
+    turbo:
+      specifier: 2.10.5
+      version: 2.10.5
+    typescript:
+      specifier: 7.0.2
+      version: 7.0.2
+    vitest:
+      specifier: 4.1.10
+      version: 4.1.10
+
 importers:
 
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: 2.5.4
+        specifier: 'catalog:'
         version: 2.5.4
       '@commitlint/cli':
-        specifier: 21.2.1
+        specifier: 'catalog:'
         version: 21.2.1(@types/node@26.1.1)(conventional-commits-parser@7.1.0)(typescript@7.0.2)
       '@commitlint/config-conventional':
-        specifier: 21.2.0
+        specifier: 'catalog:'
         version: 21.2.0
       husky:
-        specifier: 9.1.7
+        specifier: 'catalog:'
         version: 9.1.7
       lint-staged:
-        specifier: 17.1.0
+        specifier: 'catalog:'
         version: 17.1.0
       turbo:
-        specifier: 2.10.5
+        specifier: 'catalog:'
         version: 2.10.5
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
 
   packages/biome-config: {}
@@ -37,7 +64,7 @@ importers:
   packages/vitest-config:
     devDependencies:
       '@biomejs/biome':
-        specifier: 2.5.4
+        specifier: 'catalog:'
         version: 2.5.4
       '@rigi/biome-config':
         specifier: workspace:*
@@ -46,10 +73,10 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
       vitest:
-        specifier: 4.1.10
+        specifier: 'catalog:'
         version: 4.1.10(@types/node@26.1.1)(vite@8.1.5(@types/node@26.1.1)(jiti@2.6.1)(yaml@2.9.0))
 
 packages:

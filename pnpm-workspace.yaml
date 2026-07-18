@@ -2,7 +2,45 @@ packages:
   - "apps/*"
   - "packages/*"
   - "e2e"
+
 # Supply-chain cooldown: wait 3 hours (180 min) before installing freshly
 # published versions. Short enough not to block our intentionally-latest pins,
 # but still bars brand-new (minutes/hours-old) releases. pnpm default is 1440.
 minimumReleaseAge: 180
+
+# Single source of truth for dependency versions across the monorepo.
+# Packages reference these with "catalog:" instead of repeating the version.
+catalog:
+  # --- NestJS (Express) core ---
+  "@nestjs/core": 11.1.28
+  "@nestjs/common": 11.1.28
+  "@nestjs/platform-express": 11.1.28
+  "@nestjs/testing": 11.1.28
+  rxjs: 7.8.2
+  reflect-metadata: 0.2.2
+  # --- Prisma ---
+  prisma: 7.8.0
+  "@prisma/client": 7.8.0
+  # --- AdminJS ---
+  adminjs: 7.8.17
+  "@adminjs/nestjs": 7.0.0
+  "@adminjs/sql": 2.2.6
+  express-session: 1.18.2
+  # --- Build / typecheck / runtime transpile ---
+  typescript: 7.0.2
+  "@swc/core": 1.15.43
+  "@swc/cli": 0.8.1
+  unplugin-swc: 1.5.7
+  # --- Tooling ---
+  turbo: 2.10.5
+  "@biomejs/biome": 2.5.4
+  husky: 9.1.7
+  lint-staged: 17.1.0
+  "@commitlint/cli": 21.2.1
+  "@commitlint/config-conventional": 21.2.0
+  # --- Tests ---
+  vitest: 4.1.10
+  "@vitest/coverage-v8": 4.1.10
+  supertest: 7.2.2
+  "@types/supertest": 6.0.3
+  "@types/node": 24.6.0
