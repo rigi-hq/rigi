@@ -1,0 +1,41 @@
+{
+  "name": "@rigi/core",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=11"
+  },
+  "scripts": {
+    "dev": "swc src -d dist --watch & node --watch dist/main.js",
+    "build": "swc src -d dist --strip-leading-paths",
+    "start": "node dist/main.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check .",
+    "test": "vitest run --config vitest.config.ts",
+    "test:int": "vitest run --config vitest.int.config.ts"
+  },
+  "dependencies": {
+    "@nestjs/core": "catalog:",
+    "@nestjs/common": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "@rigi/plugin-sdk": "workspace:*",
+    "reflect-metadata": "catalog:",
+    "rxjs": "catalog:"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "catalog:",
+    "@rigi/tsconfig": "workspace:*",
+    "@rigi/biome-config": "workspace:*",
+    "@rigi/vitest-config": "workspace:*",
+    "@swc/core": "catalog:",
+    "@swc/cli": "catalog:",
+    "typescript": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "vitest": "catalog:",
+    "unplugin-swc": "catalog:",
+    "supertest": "catalog:",
+    "@types/supertest": "catalog:",
+    "@types/node": "catalog:"
+  }
+}
