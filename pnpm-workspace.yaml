@@ -44,3 +44,7 @@ catalog:
   supertest: 7.2.2
   "@types/supertest": 6.0.3
   "@types/node": 24.6.0
+
+# @swc/core ships a native binary and needs its install build script.
+allowBuilds:
+  "@swc/core": true
