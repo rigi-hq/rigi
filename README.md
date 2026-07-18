@@ -22,7 +22,7 @@ Tests: `just test` (unit), `just test-int` (integration), `just test-e2e` (again
 
 ## Stack
 
-- **NestJS** (Fastify) + TypeScript — modular core
+- **NestJS** (Express) + TypeScript — modular core
 - **PostgreSQL** — native columns plus a `custom_fields` JSONB column
 - **BullMQ (Redis)** — event bus, outgoing webhooks, recurring jobs, reminders
 - **AdminJS** — admin panel with a custom Kanban board
