@@ -1,0 +1,6 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "e2e"
+minimumReleaseAgeExclude:
+  - lint-staged@17.1.0

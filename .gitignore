@@ -10,3 +10,6 @@ dist/
 .env
 .env.*
 *.log
+.turbo/
+coverage/
+*.tsbuildinfo
