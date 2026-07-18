@@ -1,3 +1,5 @@
+set dotenv-load
+
 COMPOSE := env_var_or_default("COMPOSE", "podman compose")
 
 up:

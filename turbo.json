@@ -5,8 +5,19 @@
     "typecheck": { "dependsOn": ["^build"] },
     "lint": {},
     "test": { "dependsOn": ["^build"] },
-    "test:int": { "dependsOn": ["^build"], "cache": false },
-    "test:e2e": { "cache": false },
-    "dev": { "cache": false, "persistent": true }
+    "test:int": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "passThroughEnv": ["DATABASE_URL", "REDIS_URL"]
+    },
+    "test:e2e": {
+      "cache": false,
+      "passThroughEnv": ["DATABASE_URL", "REDIS_URL"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["DATABASE_URL", "REDIS_URL"]
+    }
   }
 }
