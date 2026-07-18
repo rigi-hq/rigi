@@ -26,7 +26,18 @@ catalog:
   adminjs: 7.8.17
   "@adminjs/nestjs": 7.0.0
   "@adminjs/sql": 2.2.6
+  # @adminjs/nestjs's Express loader dynamically imports this at boot; it's
+  # not declared as a dependency of @adminjs/nestjs itself (only a devDep),
+  # so it must be installed alongside it explicitly.
+  "@adminjs/express": 6.1.1
   express-session: 1.18.2
+  # adminjs's own component bundler (admin.watch()) transforms the generated
+  # .adminjs/entry.js with Babel using adminjs's .babelrc.json, which lists
+  # this plugin. Babel resolves plugins relative to the file being compiled
+  # (apps/core, under pnpm's strict node_modules) rather than adminjs's own
+  # install location, so it isn't otherwise reachable and must be a direct
+  # dependency of whatever app boots AdminJS.
+  "@babel/plugin-syntax-import-assertions": 7.29.7
   # --- Build / typecheck / runtime transpile ---
   typescript: 7.0.2
   "@swc/core": 1.15.43
@@ -50,4 +61,27 @@ catalog:
 allowBuilds:
   '@prisma/engines': true
   "@swc/core": true
+  esbuild: true
   prisma: true
+
+# adminjs@7.8.17 -> @adminjs/design-system@4.1.1 pins @tiptap/core@2.1.13, but
+# @tiptap/starter-kit@2.1.13's own "^2.1.13" ranges for its extension packages
+# resolve (via the registry, not our doing) to @tiptap/extension-*@2.27.2,
+# which require @tiptap/core@^2.7.0. That mismatch breaks adminjs's ESM import
+# of its own frontend bundle at boot ("does not provide an export named
+# 'canInsertNode'"). Pin these extensions back down to match @tiptap/core.
+overrides:
+  "@tiptap/extension-blockquote": 2.1.13
+  "@tiptap/extension-bold": 2.1.13
+  "@tiptap/extension-bullet-list": 2.1.13
+  "@tiptap/extension-code-block": 2.1.13
+  "@tiptap/extension-dropcursor": 2.1.13
+  "@tiptap/extension-gapcursor": 2.1.13
+  "@tiptap/extension-hard-break": 2.1.13
+  "@tiptap/extension-history": 2.1.13
+  "@tiptap/extension-horizontal-rule": 2.1.13
+  "@tiptap/extension-italic": 2.1.13
+  "@tiptap/extension-list-item": 2.1.13
+  "@tiptap/extension-ordered-list": 2.1.13
+  "@tiptap/extension-paragraph": 2.1.13
+  "@tiptap/extension-strike": 2.1.13

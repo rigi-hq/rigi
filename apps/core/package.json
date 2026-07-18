@@ -16,12 +16,18 @@
     "test:int": "vitest run --config vitest.int.config.ts"
   },
   "dependencies": {
+    "@adminjs/express": "catalog:",
+    "@adminjs/nestjs": "catalog:",
+    "@adminjs/sql": "catalog:",
+    "@babel/plugin-syntax-import-assertions": "catalog:",
     "@nestjs/core": "catalog:",
     "@nestjs/common": "catalog:",
     "@nestjs/platform-express": "catalog:",
     "@prisma/adapter-pg": "catalog:",
     "@prisma/client": "catalog:",
     "@rigi/plugin-sdk": "workspace:*",
+    "adminjs": "catalog:",
+    "express-session": "catalog:",
     "reflect-metadata": "catalog:",
     "rxjs": "catalog:"
   },

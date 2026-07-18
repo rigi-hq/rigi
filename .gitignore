@@ -14,3 +14,6 @@ dist/
 .turbo/
 coverage/
 *.tsbuildinfo
+
+# AdminJS's generated component bundle (rebuilt on every boot)
+.adminjs/
