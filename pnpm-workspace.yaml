@@ -2,5 +2,7 @@ packages:
   - "apps/*"
   - "packages/*"
   - "e2e"
-minimumReleaseAgeExclude:
-  - lint-staged@17.1.0
+# Supply-chain cooldown: wait 3 hours (180 min) before installing freshly
+# published versions. Short enough not to block our intentionally-latest pins,
+# but still bars brand-new (minutes/hours-old) releases. pnpm default is 1440.
+minimumReleaseAge: 180
