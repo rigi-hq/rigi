@@ -1,0 +1,27 @@
+services:
+  core:
+    build:
+      context: .
+      dockerfile: apps/core/Dockerfile
+    image: rigi-core
+    environment:
+      DATABASE_URL: postgresql://rigi:rigi@postgres:5432/rigi
+      REDIS_URL: redis://redis:6379
+      PORT: "3000"
+    ports: ["3000:3000"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_started }
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: rigi
+      POSTGRES_PASSWORD: rigi
+      POSTGRES_DB: rigi
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rigi"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  redis:
+    image: redis:7-alpine
