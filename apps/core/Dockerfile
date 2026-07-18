@@ -26,14 +26,18 @@ FROM node:24-slim AS runtime
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/prisma ./prisma
+COPY --from=build --chown=node:node /app/node_modules ./node_modules
+COPY --from=build --chown=node:node /app/dist ./dist
+COPY --from=build --chown=node:node /app/prisma ./prisma
 # `prisma migrate deploy` (run at boot below) needs a Prisma config file
 # with datasource.url set; it refuses to read DATABASE_URL from the schema
 # directly. prisma.config.ts already reads it from process.env, which is
 # how DATABASE_URL reaches the app here (compose env, no .env file).
-COPY --from=build /repo/apps/core/prisma.config.ts ./prisma.config.ts
+COPY --from=build --chown=node:node /repo/apps/core/prisma.config.ts ./prisma.config.ts
+# Run as the non-root `node` user (built into node:24-slim). /app is
+# chowned to node above so AdminJS can still write its .adminjs/ bundle
+# directory here at boot.
+USER node
 EXPOSE 3000
 # Apply any pending migrations against the target database, then boot.
 # migrate deploy is idempotent and safe for prod (unlike migrate dev).
