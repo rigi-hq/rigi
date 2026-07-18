@@ -1,25 +1,28 @@
 {
-  "name": "rigi",
-  "version": "0.0.0",
-  "private": true,
-  "packageManager": "pnpm@11.15.0",
-  "engines": { "node": ">=24", "pnpm": ">=11" },
-  "scripts": {
-    "build": "turbo run build",
-    "typecheck": "turbo run typecheck",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "test:int": "turbo run test:int",
-    "test:e2e": "turbo run test:e2e",
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "turbo": "catalog:",
-    "typescript": "catalog:",
-    "@biomejs/biome": "catalog:",
-    "husky": "catalog:",
-    "lint-staged": "catalog:",
-    "@commitlint/cli": "catalog:",
-    "@commitlint/config-conventional": "catalog:"
-  }
+	"name": "rigi",
+	"version": "0.0.0",
+	"private": true,
+	"packageManager": "pnpm@11.15.0",
+	"engines": {
+		"node": ">=24",
+		"pnpm": ">=11"
+	},
+	"scripts": {
+		"build": "turbo run build",
+		"typecheck": "turbo run typecheck",
+		"lint": "turbo run lint",
+		"test": "turbo run test",
+		"test:int": "turbo run test:int",
+		"test:e2e": "turbo run test:e2e",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"turbo": "catalog:",
+		"typescript": "catalog:",
+		"@biomejs/biome": "catalog:",
+		"husky": "catalog:",
+		"lint-staged": "catalog:",
+		"@commitlint/cli": "catalog:",
+		"@commitlint/config-conventional": "catalog:"
+	}
 }
