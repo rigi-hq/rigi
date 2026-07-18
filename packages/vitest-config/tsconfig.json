@@ -1,0 +1,4 @@
+{
+  "extends": "@rigi/tsconfig/base.json",
+  "include": ["src"]
+}
