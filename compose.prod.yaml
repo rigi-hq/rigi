@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: apps/core/Dockerfile
     image: rigi-core
-    command: ["node_modules/.pnpm/node_modules/.bin/prisma", "migrate", "deploy"]
+    command: ["node_modules/.bin/prisma", "migrate", "deploy"]
     environment:
       RIGI_DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       NODE_CONFIG_STRICT_MODE: "true"

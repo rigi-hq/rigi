@@ -8,7 +8,7 @@ RUN pnpm install --frozen-lockfile
 RUN pnpm --filter @rigi/core build
 RUN pnpm --filter @rigi/core deploy --prod --ignore-scripts /app
 COPY apps/core/prisma /app/prisma
-RUN /app/node_modules/.pnpm/node_modules/.bin/prisma generate --schema=/app/prisma/schema.prisma
+RUN cd /app && node_modules/.bin/prisma generate
 
 # --- runtime stage ---
 FROM node:24-slim AS runtime
