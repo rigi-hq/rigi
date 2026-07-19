@@ -22,6 +22,10 @@
       "nursery": {
         "noFloatingPromises": "error"
       },
+      "performance": {
+        "noBarrelFile": "error",
+        "noReExportAll": "error"
+      },
       "suspicious": {
         "noUndeclaredEnvVars": "error"
       },

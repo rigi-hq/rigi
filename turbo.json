@@ -8,16 +8,16 @@
     "test:int": {
       "dependsOn": ["^build"],
       "cache": false,
-      "passThroughEnv": ["RIGI_*", "NODE_CONFIG_STRICT_MODE"]
+      "passThroughEnv": ["RIGI_*"]
     },
     "test:e2e": {
       "cache": false,
-      "passThroughEnv": ["RIGI_*", "NODE_CONFIG_STRICT_MODE"]
+      "passThroughEnv": ["RIGI_*"]
     },
     "dev": {
       "cache": false,
       "persistent": true,
-      "passThroughEnv": ["RIGI_*", "NODE_CONFIG_STRICT_MODE"]
+      "passThroughEnv": ["RIGI_*"]
     }
   }
 }

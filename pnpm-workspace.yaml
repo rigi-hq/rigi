@@ -24,6 +24,8 @@ catalog:
   config: 4.4.2
   dotenv: 17.4.2
   zod: 4.4.3
+  # --- E2E / browser testing ---
+  "@playwright/test": 1.61.1
   # --- Prisma ---
   prisma: 7.8.0
   "@prisma/client": 7.8.0

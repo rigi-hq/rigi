@@ -17,3 +17,8 @@ coverage/
 
 # AdminJS's generated component bundle (rebuilt on every boot)
 .adminjs/
+
+# Playwright
+test-results/
+playwright-report/
+.playwright/

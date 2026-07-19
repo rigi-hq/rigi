@@ -1,5 +1,5 @@
 {
-  "name": "@rigi/core-e2e",
+  "name": "@rigi/admin-e2e",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -13,20 +13,20 @@
   "scripts": {
     "lint": "biome check .",
     "typecheck": "tsc --noEmit",
-    "test:e2e": "NODE_ENV=e2e vitest run"
+    "test:e2e": "NODE_ENV=e2e playwright test"
   },
   "dependencies": {
+    "@playwright/test": "catalog:",
     "@rigi/config": "workspace:*",
+    "@rigi/testing-pom-base": "workspace:*",
     "config": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@rigi/tsconfig": "workspace:*",
     "@rigi/biome-config": "workspace:*",
-    "@rigi/vitest-config": "workspace:*",
     "typescript": "catalog:",
     "@biomejs/biome": "catalog:",
-    "vitest": "catalog:",
     "@types/node": "catalog:"
   }
 }

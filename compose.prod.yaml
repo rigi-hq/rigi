@@ -7,7 +7,6 @@ services:
     command: ["node_modules/.bin/prisma", "migrate", "deploy"]
     environment:
       RIGI_DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-      NODE_CONFIG_STRICT_MODE: "true"
     depends_on:
       postgres: { condition: service_healthy }
   core:
@@ -16,7 +15,6 @@ services:
       RIGI_DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       RIGI_REDIS_URL: redis://redis:6379
       RIGI_PORT: "3000"
-      NODE_CONFIG_STRICT_MODE: "true"
     ports: ["3000:3000"]
     depends_on:
       migrate: { condition: service_completed_successfully }

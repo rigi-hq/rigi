@@ -14,3 +14,11 @@ No relative imports (`./`, `../`) — including same-directory siblings.
   `import { loadConfig } from '@rigi/config'`.
 
 `#` = internal (this package), `@rigi` = external (another package).
+
+## No barrel files
+
+No barrel/index re-export files (`export * from ...`, an `index.ts` that only
+re-exports). They bloat the module graph and hurt tree-shaking (enforced by
+biome `noBarrelFile` / `noReExportAll`). Packages expose entry points via
+per-file `exports` subpaths in `package.json` (e.g. `@rigi/pkg/thing` →
+`./dist/thing.js`), and consumers import the specific subpath.
