@@ -1,6 +1,6 @@
 import { type DynamicModule, Module } from '@nestjs/common';
 import { createAdminModule } from '#admin/admin.module';
-import { HealthController } from '#health/health.controller';
+import { HealthModule } from '#health/health.module';
 import { PrismaService } from '#prisma/prisma.service';
 
 @Module({})
@@ -11,8 +11,7 @@ export class AppModule {
 
     return {
       module: AppModule,
-      imports: [adminModule],
-      controllers: [HealthController],
+      imports: [adminModule, HealthModule],
       providers: [PrismaService],
     };
   }

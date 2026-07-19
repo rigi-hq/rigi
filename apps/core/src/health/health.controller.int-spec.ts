@@ -1,14 +1,14 @@
 import type { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
-import { AppModule } from '#app.module';
+import { HealthModule } from '#health/health.module';
 
 describe('Health (int)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [await AppModule.register()],
+      imports: [HealthModule],
     }).compile();
     app = moduleRef.createNestApplication();
     await app.init();
