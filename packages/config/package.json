@@ -1,0 +1,38 @@
+{
+  "name": "@rigi/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=11"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "config": "catalog:",
+    "dotenv": "catalog:"
+  },
+  "peerDependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@rigi/tsconfig": "workspace:*",
+    "@rigi/biome-config": "workspace:*",
+    "@rigi/vitest-config": "workspace:*",
+    "typescript": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "vitest": "catalog:",
+    "zod": "catalog:"
+  }
+}

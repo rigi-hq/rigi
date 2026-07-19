@@ -26,11 +26,14 @@
     "@nestjs/platform-express": "catalog:",
     "@prisma/adapter-pg": "catalog:",
     "@prisma/client": "catalog:",
+    "@rigi/config": "workspace:*",
     "@rigi/plugin-sdk": "workspace:*",
     "adminjs": "catalog:",
+    "config": "catalog:",
     "express-session": "catalog:",
     "reflect-metadata": "catalog:",
-    "rxjs": "catalog:"
+    "rxjs": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@nestjs/testing": "catalog:",

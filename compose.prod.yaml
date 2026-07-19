@@ -5,9 +5,10 @@ services:
       dockerfile: apps/core/Dockerfile
     image: rigi-core
     environment:
-      DATABASE_URL: postgresql://rigi:rigi@postgres:5432/rigi
-      REDIS_URL: redis://redis:6379
-      PORT: "3000"
+      RIGI_DATABASE_URL: postgresql://rigi:rigi@postgres:5432/rigi
+      RIGI_REDIS_URL: redis://redis:6379
+      RIGI_PORT: "3000"
+      NODE_CONFIG_STRICT_MODE: "true"
     ports: ["3000:3000"]
     depends_on:
       postgres: { condition: service_healthy }

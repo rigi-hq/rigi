@@ -1,11 +1,12 @@
 import { Injectable, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
+import { config } from '../config.js';
 
 // Prisma 7 requires a driver adapter at the PrismaClient constructor — a bare
 // datasource URL is no longer accepted (P2038: "PrismaClient requires a
 // driver adapter to connect to your database, but none was provided.").
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg({ connectionString: config.database.url });
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {

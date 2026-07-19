@@ -8,16 +8,16 @@
     "test:int": {
       "dependsOn": ["^build"],
       "cache": false,
-      "passThroughEnv": ["DATABASE_URL", "REDIS_URL"]
+      "passThroughEnv": ["RIGI_*", "NODE_CONFIG_STRICT_MODE"]
     },
     "test:e2e": {
       "cache": false,
-      "passThroughEnv": ["DATABASE_URL", "REDIS_URL"]
+      "passThroughEnv": ["RIGI_*", "NODE_CONFIG_STRICT_MODE"]
     },
     "dev": {
       "cache": false,
       "persistent": true,
-      "passThroughEnv": ["DATABASE_URL", "REDIS_URL"]
+      "passThroughEnv": ["RIGI_*", "NODE_CONFIG_STRICT_MODE"]
     }
   }
 }
