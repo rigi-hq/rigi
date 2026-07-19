@@ -140,4 +140,9 @@ jobs:
 
       - name: Link to allure report
         if: always()
-        run: echo "🎯 [Allure report](https://rigi-hq.github.io/rigi/allure/$REPORT_SLUG/)" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          {
+            echo ""
+            echo "---"
+            echo "## 🎯 [Allure report](https://rigi-hq.github.io/rigi/allure/$REPORT_SLUG/)"
+          } >> "$GITHUB_STEP_SUMMARY"
