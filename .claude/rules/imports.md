@@ -5,7 +5,8 @@ paths:
 
 # Imports
 
-No relative imports (`./`, `../`) — including same-directory siblings.
+No `../` parent-directory imports (enforced by biome `noRestrictedImports`) —
+use a `#`-aliased import instead. Same-directory `./sibling` imports are fine.
 
 - **`#*`** — internal imports, within the same package. Each package declares an
   `imports` map in its `package.json` (`"#*"` → `./src/*.ts` in development,
