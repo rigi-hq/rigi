@@ -1,4 +1,4 @@
-import { SDK_VERSION } from './index.js';
+import { SDK_VERSION } from '#index';
 
 describe('plugin-sdk', () => {
   it('exposes an SDK version string', () => {

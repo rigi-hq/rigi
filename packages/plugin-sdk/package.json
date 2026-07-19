@@ -5,6 +5,12 @@
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "imports": {
+    "#*": {
+      "development": "./src/*.ts",
+      "default": "./dist/*.js"
+    }
+  },
   "engines": {
     "node": ">=24",
     "pnpm": ">=11"
