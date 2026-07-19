@@ -99,6 +99,7 @@ jobs:
       RIGI_REDIS_URL: redis://redis:6379
       RIGI_PORT: '3000'
       E2E_BASE_URL: http://localhost:3000
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
