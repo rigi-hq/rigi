@@ -78,6 +78,8 @@ jobs:
   e2e-tests:
     needs: check
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     # Image tag must match the @playwright/test version in the catalog.
     container: mcr.microsoft.com/playwright:v1.61.1-noble
     services:
@@ -124,16 +126,12 @@ jobs:
           fi
           echo "REPORT_SLUG=$slug" >> "$GITHUB_ENV"
       - run: pnpm turbo run test:e2e
-      - name: Record report target
+      - name: Publish allure report
         if: always()
-        run: echo "$REPORT_SLUG" > e2e/admin/allure-results/target-slug.txt
-      - name: Upload allure results
-        if: always()
-        uses: actions/upload-artifact@v7
+        uses: ./.github/actions/publish-allure
         with:
-          name: allure-results
-          path: e2e/admin/allure-results
-          retention-days: 1
+          slug: ${{ env.REPORT_SLUG }}
+          results-dir: e2e/admin/allure-results
       - name: Link to allure report
         if: always()
-        run: echo "🎯 [Allure report](https://rigi-hq.github.io/rigi/allure/$REPORT_SLUG/) (available after the Allure workflow finishes)" >> "$GITHUB_STEP_SUMMARY"
+        run: echo "🎯 [Allure report](https://rigi-hq.github.io/rigi/allure/$REPORT_SLUG/)" >> "$GITHUB_STEP_SUMMARY"
