@@ -2,7 +2,7 @@ import { AdminModule as AdminJSModule } from '@adminjs/nestjs';
 import { Adapter, Database, Resource } from '@adminjs/sql';
 import type { DynamicModule } from '@nestjs/common';
 import AdminJS from 'adminjs';
-import { config } from '../config.js';
+import { config } from '#config';
 
 export async function createAdminModule(): Promise<DynamicModule> {
   AdminJS.registerAdapter({ Database, Resource });

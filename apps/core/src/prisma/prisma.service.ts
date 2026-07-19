@@ -1,7 +1,7 @@
 import { Injectable, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
-import { config } from '../config.js';
+import { config } from '#config';
 
 // Prisma 7 requires a driver adapter at the PrismaClient constructor — a bare
 // datasource URL is no longer accepted (P2038: "PrismaClient requires a

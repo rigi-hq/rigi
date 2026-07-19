@@ -1,5 +1,10 @@
 {
   "extends": "@rigi/tsconfig/nest.json",
-  "compilerOptions": { "outDir": "dist", "rootDir": "src", "types": ["node", "reflect-metadata"] },
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "types": ["node", "reflect-metadata"],
+    "customConditions": ["development"]
+  },
   "include": ["src"]
 }
