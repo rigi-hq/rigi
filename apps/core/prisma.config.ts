@@ -6,7 +6,10 @@ import { defineConfig } from 'prisma/config';
 // Node's built-in loader instead of adding a dotenv dependency. The repo
 // keeps a single .env at the monorepo root (see justfile / compose.yaml),
 // not per-app, so resolve relative to this config file rather than cwd.
-const rootEnvPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../.env');
+const rootEnvPath = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '../../.env',
+);
 try {
   process.loadEnvFile(rootEnvPath);
 } catch {
