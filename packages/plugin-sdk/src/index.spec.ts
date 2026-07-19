@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { SDK_VERSION } from './index.js';
 
 describe('plugin-sdk', () => {
