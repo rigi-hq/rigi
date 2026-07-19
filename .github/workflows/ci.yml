@@ -107,14 +107,17 @@ jobs:
       - uses: ./.github/actions/setup
       - run: pnpm turbo run build
       - run: pnpm --filter @rigi/core exec prisma migrate deploy
+
       - name: Start app
         run: pnpm --filter @rigi/core start &
+
       - name: Wait for app
         uses: Jtalk/url-health-check-action@v5
         with:
           url: http://localhost:3000/health
           max-attempts: 30
           retry-delay: 2s
+
       - name: Resolve report slug
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -125,13 +128,16 @@ jobs:
             slug="main"
           fi
           echo "REPORT_SLUG=$slug" >> "$GITHUB_ENV"
+
       - run: pnpm turbo run test:e2e
+
       - name: Publish allure report
         if: always()
         uses: ./.github/actions/publish-allure
         with:
           slug: ${{ env.REPORT_SLUG }}
           results-dir: e2e/admin/allure-results
+
       - name: Link to allure report
         if: always()
         run: echo "🎯 [Allure report](https://rigi-hq.github.io/rigi/allure/$REPORT_SLUG/)" >> "$GITHUB_STEP_SUMMARY"
