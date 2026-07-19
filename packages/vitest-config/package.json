@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     "./base": "./dist/base.js",
-    "./nest-int": "./dist/nest-int.js"
+    "./nest-int": "./dist/nest-int.js",
+    "./e2e": "./dist/e2e.js"
   },
   "engines": {
     "node": ">=24",

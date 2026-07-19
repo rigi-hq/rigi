@@ -240,23 +240,39 @@ importers:
         specifier: 'catalog:'
         version: 4.1.10(@types/node@24.6.0)(vite@8.1.5(@types/node@24.6.0)(jiti@2.6.1)(yaml@2.9.0))
 
-  e2e:
+  e2e/core:
+    dependencies:
+      '@rigi/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      config:
+        specifier: 'catalog:'
+        version: 4.4.2
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
     devDependencies:
       '@biomejs/biome':
         specifier: 'catalog:'
         version: 2.5.4
       '@rigi/biome-config':
         specifier: workspace:*
-        version: link:../packages/biome-config
+        version: link:../../packages/biome-config
       '@rigi/tsconfig':
         specifier: workspace:*
-        version: link:../packages/tsconfig
+        version: link:../../packages/tsconfig
+      '@rigi/vitest-config':
+        specifier: workspace:*
+        version: file:packages/vitest-config(vitest@4.1.10(@types/node@24.6.0)(vite@8.1.5(@types/node@24.6.0)(jiti@2.6.1)(yaml@2.9.0)))
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.6.0
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
       vitest:
         specifier: 'catalog:'
-        version: 4.1.10(@types/node@26.1.1)(vite@8.1.5(@types/node@26.1.1)(jiti@2.6.1)(yaml@2.9.0))
+        version: 4.1.10(@types/node@24.6.0)(vite@8.1.5(@types/node@24.6.0)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/biome-config: {}
 
