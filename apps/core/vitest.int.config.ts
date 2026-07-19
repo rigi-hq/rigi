@@ -5,6 +5,7 @@ import { defineConfig, mergeConfig } from 'vitest/config';
 export default mergeConfig(
   nestInt,
   defineConfig({
+    oxc: false,
     plugins: [
       swc.vite({
         module: { type: 'es6' },
