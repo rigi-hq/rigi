@@ -1,0 +1,14 @@
+diff --git a/lib/buildRouter.js b/lib/buildRouter.js
+index 3bfdd1560867ecb935a63b830b101d2568157265..5cd597c0b5629c5f50af69c94db5c82ad7b6e099 100644
+--- a/lib/buildRouter.js
++++ b/lib/buildRouter.js
+@@ -58,7 +58,8 @@ export const buildAssets = ({ admin, assets, routes, router, }) => {
+     }
+     assets.forEach((asset) => {
+         router.get(asset.path, async (_req, res) => {
+-            res.sendFile(path.resolve(asset.src));
++            const resolved = path.resolve(asset.src);
++            res.sendFile(path.basename(resolved), { root: path.dirname(resolved) });
+         });
+     });
+ };

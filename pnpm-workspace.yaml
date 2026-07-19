@@ -85,3 +85,6 @@ overrides:
   "@tiptap/extension-ordered-list": 2.1.13
   "@tiptap/extension-paragraph": 2.1.13
   "@tiptap/extension-strike": 2.1.13
+
+patchedDependencies:
+  '@adminjs/express@6.1.1': patches/@adminjs__express@6.1.1.patch
