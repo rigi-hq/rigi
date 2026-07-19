@@ -19,7 +19,19 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "nursery": {
+        "noFloatingPromises": "error"
+      },
+      "suspicious": {
+        "noUndeclaredEnvVars": "error"
+      },
       "style": {
+        "useThrowOnlyError": "error",
+        "noProcessEnv": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": { "syntax": "shorthand" }
+        },
         "useFilenamingConvention": {
           "level": "error",
           "options": { "filenameCases": ["kebab-case"], "strictCase": true }
