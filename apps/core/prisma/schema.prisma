@@ -6,7 +6,6 @@ datasource db {
   provider = "postgresql"
 }
 
-/// Trivial model proving Prisma owns migrations; real L1 models come later.
 model Setting {
   id    String @id @default(uuid())
   key   String @unique
