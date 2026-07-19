@@ -53,7 +53,6 @@
     "@biomejs/biome": "catalog:",
     "prisma": "catalog:",
     "vitest": "catalog:",
-    "unplugin-swc": "catalog:",
     "supertest": "catalog:",
     "@types/supertest": "catalog:",
     "@types/node": "catalog:"

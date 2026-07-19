@@ -48,7 +48,6 @@ catalog:
   typescript: 7.0.2
   "@swc/core": 1.15.43
   "@swc/cli": 0.8.1
-  unplugin-swc: 1.5.7
   # --- Tooling ---
   turbo: 2.10.5
   "@biomejs/biome": 2.5.4
