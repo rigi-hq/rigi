@@ -9,4 +9,18 @@ node_modules/
 dist/
 .env
 .env.*
+!.env.example
 *.log
+.turbo/
+coverage/
+*.tsbuildinfo
+
+# AdminJS's generated component bundle (rebuilt on every boot)
+.adminjs/
+
+# Playwright
+test-results/
+playwright-report/
+.playwright/
+allure-results/
+allure-report/

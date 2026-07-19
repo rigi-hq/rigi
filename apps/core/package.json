@@ -1,0 +1,61 @@
+{
+  "name": "@rigi/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#*": {
+      "development": "./src/*.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=11"
+  },
+  "scripts": {
+    "postinstall": "prisma generate",
+    "migrate": "prisma migrate deploy",
+    "dev": "swc src -d dist --watch & node --watch dist/main.js",
+    "build": "swc src -d dist --strip-leading-paths",
+    "start": "node dist/main.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check .",
+    "test": "vitest run --config vitest.config.ts",
+    "test:int": "vitest run --config vitest.int.config.ts"
+  },
+  "dependencies": {
+    "@adminjs/express": "catalog:",
+    "@adminjs/nestjs": "catalog:",
+    "@adminjs/sql": "catalog:",
+    "@babel/plugin-syntax-import-assertions": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/common": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "@prisma/adapter-pg": "catalog:",
+    "@prisma/client": "catalog:",
+    "@rigi/config": "workspace:*",
+    "@rigi/plugin-sdk": "workspace:*",
+    "adminjs": "catalog:",
+    "config": "catalog:",
+    "express-session": "catalog:",
+    "prisma": "catalog:",
+    "reflect-metadata": "catalog:",
+    "rxjs": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "catalog:",
+    "@rigi/tsconfig": "workspace:*",
+    "@rigi/biome-config": "workspace:*",
+    "@rigi/vitest-config": "workspace:*",
+    "@swc/core": "catalog:",
+    "@swc/cli": "catalog:",
+    "typescript": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "vitest": "catalog:",
+    "supertest": "catalog:",
+    "@types/supertest": "catalog:",
+    "@types/node": "catalog:"
+  }
+}

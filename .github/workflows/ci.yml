@@ -1,0 +1,148 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TURBO_TELEMETRY_DISABLED: 1
+
+jobs:
+  pr-title:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      PR_TITLE: ${{ github.event.pull_request.title }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: echo "$PR_TITLE" | pnpm exec commitlint
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm turbo run lint
+
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm turbo run build
+
+  check:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm turbo run typecheck test
+
+  int-tests:
+    needs: check
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_USER: rigi
+          POSTGRES_PASSWORD: rigi
+          POSTGRES_DB: rigi
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U rigi"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+    env:
+      RIGI_DATABASE_URL: postgresql://rigi:rigi@localhost:5432/rigi
+      RIGI_REDIS_URL: redis://localhost:6379
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm --filter @rigi/core exec prisma migrate deploy
+      - run: pnpm turbo run test:int
+
+  e2e-tests:
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    # Image tag must match the @playwright/test version in the catalog.
+    container: mcr.microsoft.com/playwright:v1.61.1-noble
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_USER: rigi
+          POSTGRES_PASSWORD: rigi
+          POSTGRES_DB: rigi
+        options: >-
+          --health-cmd "pg_isready -U rigi"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+    env:
+      RIGI_DATABASE_URL: postgresql://rigi:rigi@postgres:5432/rigi
+      RIGI_REDIS_URL: redis://redis:6379
+      RIGI_PORT: '3000'
+      E2E_BASE_URL: http://localhost:3000
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm turbo run build
+      - run: pnpm --filter @rigi/core exec prisma migrate deploy
+
+      - name: Start app
+        run: pnpm --filter @rigi/core start &
+
+      - name: Wait for app
+        uses: Jtalk/url-health-check-action@v5
+        with:
+          url: http://localhost:3000/health
+          max-attempts: 30
+          retry-delay: 2s
+
+      - name: Resolve report slug
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ -n "$PR_NUMBER" ]; then
+            slug="pr-$PR_NUMBER"
+          else
+            slug="main"
+          fi
+          echo "REPORT_SLUG=$slug" >> "$GITHUB_ENV"
+
+      - run: pnpm turbo run test:e2e
+
+      - name: Publish allure report
+        if: always()
+        uses: ./.github/actions/publish-allure
+        with:
+          slug: ${{ env.REPORT_SLUG }}
+          results-dir: e2e/admin/allure-results
+
+      - name: Link to allure report
+        if: always()
+        run: |
+          {
+            echo ""
+            echo "---"
+            echo "## 🎯 [Allure report](https://rigi-hq.github.io/rigi/allure/$REPORT_SLUG/)"
+          } >> "$GITHUB_STEP_SUMMARY"

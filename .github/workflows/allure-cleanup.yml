@@ -1,0 +1,35 @@
+name: Allure cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+concurrency:
+  group: gh-pages-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+      - name: Remove PR report
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          slug="pr-$PR_NUMBER"
+          if [ ! -d "allure/$slug" ]; then
+            echo "nothing to remove" && exit 0
+          fi
+          rm -rf "allure/$slug"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A "allure/$slug"
+          git commit -m "remove allure report for $slug" || exit 0
+          git push

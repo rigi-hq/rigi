@@ -1,0 +1,32 @@
+{
+  "name": "@rigi/admin-e2e",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#*": "./*.ts"
+  },
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=11"
+  },
+  "scripts": {
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "NODE_ENV=e2e playwright test"
+  },
+  "dependencies": {
+    "@playwright/test": "catalog:",
+    "@rigi/config": "workspace:*",
+    "@rigi/testing-pom-base": "workspace:*",
+    "config": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@rigi/tsconfig": "workspace:*",
+    "@rigi/biome-config": "workspace:*",
+    "typescript": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "@types/node": "catalog:"
+  }
+}

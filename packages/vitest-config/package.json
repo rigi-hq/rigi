@@ -1,0 +1,31 @@
+{
+  "name": "@rigi/vitest-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base": "./dist/base.js",
+    "./nest-int": "./dist/nest-int.js",
+    "./e2e": "./dist/e2e.js"
+  },
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=11"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check ."
+  },
+  "devDependencies": {
+    "@rigi/tsconfig": "workspace:*",
+    "@rigi/biome-config": "workspace:*",
+    "vitest": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "vitest": "catalog:"
+  }
+}

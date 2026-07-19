@@ -1,0 +1,15 @@
+name: Setup
+description: Enable pnpm, set up Node with cache, restore turbo cache, install deps.
+
+runs:
+  using: composite
+  steps:
+    - uses: rharkor/caching-for-turbo@v2.5.0
+    - shell: bash
+      run: corepack enable
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 24
+        cache: pnpm
+    - shell: bash
+      run: pnpm install --frozen-lockfile

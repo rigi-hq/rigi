@@ -1,0 +1,10 @@
+{
+  "extends": "@rigi/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "types": ["vitest/globals"],
+    "customConditions": ["development"]
+  },
+  "include": ["src"]
+}
