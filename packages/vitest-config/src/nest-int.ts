@@ -8,7 +8,6 @@ export default mergeConfig(
       include: ['src/**/*.int-spec.ts'],
       testTimeout: 10_000,
       hookTimeout: 5_000,
-      fileParallelism: false,
     },
   }),
 );
