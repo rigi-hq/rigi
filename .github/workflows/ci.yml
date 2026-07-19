@@ -113,4 +113,27 @@ jobs:
           url: http://localhost:3000/health
           max-attempts: 30
           retry-delay: 2s
+      - name: Resolve report slug
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ -n "$PR_NUMBER" ]; then
+            slug="pr-$PR_NUMBER"
+          else
+            slug="main"
+          fi
+          echo "REPORT_SLUG=$slug" >> "$GITHUB_ENV"
       - run: pnpm turbo run test:e2e
+      - name: Record report target
+        if: always()
+        run: echo "$REPORT_SLUG" > e2e/admin/allure-results/target-slug.txt
+      - name: Upload allure results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-results
+          path: e2e/admin/allure-results
+          retention-days: 1
+      - name: Link to allure report
+        if: always()
+        run: echo "🎯 [Allure report](https://rigi-hq.github.io/rigi/allure/$REPORT_SLUG/) (available after the Allure workflow finishes)" >> "$GITHUB_STEP_SUMMARY"

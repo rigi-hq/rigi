@@ -6,7 +6,7 @@ export function playwrightPreset(baseUrl: string): PlaywrightTestConfig {
     testMatch: '**/*.e2e-spec.ts',
     // biome-ignore lint/style/useNamingConvention: baseURL is Playwright's option name
     use: { baseURL: baseUrl },
-    reporter: [['list'], ['github']],
+    reporter: [['list'], ['github'], ['allure-playwright']],
     projects: [{ name: 'chromium', use: { browserName: 'chromium' } }],
   });
 }

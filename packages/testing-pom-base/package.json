@@ -28,7 +28,8 @@
     "lint": "biome check ."
   },
   "dependencies": {
-    "@playwright/test": "catalog:"
+    "@playwright/test": "catalog:",
+    "allure-playwright": "catalog:"
   },
   "devDependencies": {
     "@rigi/tsconfig": "workspace:*",
