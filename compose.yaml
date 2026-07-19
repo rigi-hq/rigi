@@ -2,13 +2,13 @@ services:
   postgres:
     image: postgres:17-alpine
     environment:
-      POSTGRES_USER: rigi
-      POSTGRES_PASSWORD: rigi
-      POSTGRES_DB: rigi
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports: ["5432:5432"]
     volumes: ["rigi_pg:/var/lib/postgresql/data"]
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U rigi"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 5s
       timeout: 3s
       retries: 10
