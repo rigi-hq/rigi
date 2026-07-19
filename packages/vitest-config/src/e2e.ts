@@ -1,9 +1,11 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig, mergeConfig } from 'vitest/config';
+import base from './base.js';
 
-export default defineConfig({
-  test: {
-    include: ['**/*.e2e-spec.ts'],
-    environment: 'node',
-    globals: true,
-  },
-});
+export default mergeConfig(
+  base,
+  defineConfig({
+    test: {
+      include: ['**/*.e2e-spec.ts'],
+    },
+  }),
+);
