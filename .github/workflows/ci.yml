@@ -78,6 +78,8 @@ jobs:
   e2e-tests:
     needs: check
     runs-on: ubuntu-latest
+    # Image tag must match the @playwright/test version in the catalog.
+    container: mcr.microsoft.com/playwright:v1.61.1-noble
     services:
       postgres:
         image: postgres:18-alpine
@@ -85,7 +87,6 @@ jobs:
           POSTGRES_USER: rigi
           POSTGRES_PASSWORD: rigi
           POSTGRES_DB: rigi
-        ports: ['5432:5432']
         options: >-
           --health-cmd "pg_isready -U rigi"
           --health-interval 5s
@@ -93,10 +94,9 @@ jobs:
           --health-retries 10
       redis:
         image: redis:7-alpine
-        ports: ['6379:6379']
     env:
-      RIGI_DATABASE_URL: postgresql://rigi:rigi@localhost:5432/rigi
-      RIGI_REDIS_URL: redis://localhost:6379
+      RIGI_DATABASE_URL: postgresql://rigi:rigi@postgres:5432/rigi
+      RIGI_REDIS_URL: redis://redis:6379
       RIGI_PORT: '3000'
       E2E_BASE_URL: http://localhost:3000
     steps:
@@ -104,7 +104,6 @@ jobs:
       - uses: ./.github/actions/setup
       - run: pnpm turbo run build
       - run: pnpm --filter @rigi/core exec prisma migrate deploy
-      - run: pnpm --filter @rigi/admin-e2e exec playwright install --with-deps chromium
       - name: Start app
         run: pnpm --filter @rigi/core start &
       - name: Wait for app
