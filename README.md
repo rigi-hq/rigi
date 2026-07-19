@@ -1,9 +1,22 @@
+<div align="center">
+
 # Rigi
 
-Self-hosted, extensible task manager — a modular core plus plugins. Connectors
-(e.g. Task Tracker, Slack) are plugins built on the plugin SDK.
+**Self-hosted, extensible task manager — a modular core plus plugins.**
 
-Rigi is Georgian for "queue / row / order".
+Connectors (e.g. Task Tracker, Slack) are plugins built on the plugin SDK.
+
+<br />
+
+[![CI](https://img.shields.io/github/actions/workflow/status/rigi-hq/rigi/ci.yml?branch=main&style=flat-square&logo=githubactions&logoColor=white&label=CI)](https://github.com/rigi-hq/rigi/actions/workflows/ci.yml)
+[![Node](https://img.shields.io/badge/node-%E2%89%A522-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white)](https://nestjs.com)
+[![License](https://img.shields.io/badge/license-TBD-lightgrey?style=flat-square)](#license)
+
+<sub>Rigi is Georgian for "queue / row / order".</sub>
+
+</div>
 
 ## Development
 
