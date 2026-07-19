@@ -15,7 +15,30 @@
     "indentWidth": 2,
     "lineWidth": 80
   },
-  "linter": { "enabled": true, "rules": { "recommended": true } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": { "filenameCases": ["kebab-case"], "strictCase": true }
+        },
+        "useNamingConvention": {
+          "level": "error",
+          "options": {
+            "strictCase": true,
+            "conventions": [
+              {
+                "selector": { "kind": "objectLiteralProperty" },
+                "formats": ["camelCase", "PascalCase"]
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
   "javascript": {
     "formatter": { "quoteStyle": "single", "semicolons": "always" }
   }
