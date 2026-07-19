@@ -4,12 +4,18 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./base": "./src/base.ts",
-    "./nest-int": "./src/nest-int.ts"
+    "./base": "./dist/base.js",
+    "./nest-int": "./dist/nest-int.js"
   },
   "engines": {
     "node": ">=24",
     "pnpm": ">=11"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check ."
   },
   "devDependencies": {
     "@rigi/tsconfig": "workspace:*",
