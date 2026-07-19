@@ -1,3 +1,3 @@
 module.exports = {
-  baseUrl: 'BASE_URL',
+  baseUrl: 'E2E_BASE_URL',
 };
